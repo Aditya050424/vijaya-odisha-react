@@ -1,16 +1,18 @@
 
 import { useEffect, useState } from "react";
 
+const BASE_URL = import.meta.env.BASE_URL;
+
 const navigation = [
-    ["Home", "/"],
-    ["About Us", "/about-us.html"],
-    ["Objectives", "/objectives.html"],
-    ["Activities", "/activities.html"],
-    ["Strength", "/strength.html"],
-    ["Projects", "/projects.html"],
-    ["Gallery", "/photo-gallery.html"],
-    ["News", "/news.html"],
-    ["Contact", "/contact.html"],
+    ["Home", BASE_URL],
+    ["About Us", `${BASE_URL}about-us.html`],
+    ["Objectives", `${BASE_URL}objectives.html`],
+    ["Activities", `${BASE_URL}activities.html`],
+    ["Strength", `${BASE_URL}strength.html`],
+    ["Projects", `${BASE_URL}projects.html`],
+    ["Gallery", `${BASE_URL}photo-gallery.html`],
+    ["News", `${BASE_URL}news.html`],
+    ["Contact", `${BASE_URL}contact.html`],
 ];
 
 export default function SiteHeader({
@@ -19,6 +21,9 @@ export default function SiteHeader({
 }) {
     const [menuOpen, setMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+
+    const donateUrl = `${BASE_URL}donate.html`;
+    const logoUrl = `${BASE_URL}assets/images/vijay-odisha-logo.jpg`;
 
     useEffect(() => {
         const handleScroll = () => {
@@ -42,8 +47,8 @@ export default function SiteHeader({
                     </span>
 
                     <div>
-                        <a href="/news.html">Latest News</a>
-                        <a href="/contact.html">Get in touch</a>
+                        <a href={`${BASE_URL}news.html`}>Latest News</a>
+                        <a href={`${BASE_URL}contact.html`}>Get in touch</a>
                     </div>
                 </div>
             </div>
@@ -55,11 +60,11 @@ export default function SiteHeader({
                     {/* LOGO */}
                     <a
                         className="home-brand"
-                        href="/"
+                        href={BASE_URL}
                         aria-label="Vijaya Odisha home"
                     >
                         <img
-                            src="/assets/images/vijay-odisha-logo.jpg"
+                            src={logoUrl}
                             alt="Vijaya Odisha logo"
                         />
                     </a>
@@ -83,7 +88,7 @@ export default function SiteHeader({
                         <a
                             className={`home-nav-donate ${activePage === "Donate" ? "donate-active" : ""
                                 }`}
-                            href="/donate.html"
+                            href={donateUrl}
                         >
                             Support Us <span>↗</span>
                         </a>
@@ -117,7 +122,10 @@ export default function SiteHeader({
                         </a>
                     ))}
 
-                    <a href="/donate.html" onClick={() => setMenuOpen(false)}>
+                    <a
+                        href={donateUrl}
+                        onClick={() => setMenuOpen(false)}
+                    >
                         Support Us ↗
                     </a>
                 </nav>

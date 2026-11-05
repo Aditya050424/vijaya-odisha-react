@@ -1,18 +1,22 @@
 
 import { useEffect, useState } from "react";
 
-const A = "/assets/images/";
+// GitHub Pages base path
+const BASE = import.meta.env.BASE_URL;
+const A = `${BASE}assets/images/`;
+
+const page = (path = "") => `${BASE}${path}`;
 
 const navigation = [
-  ["Home", "/"],
-  ["About Us", "/about-us.html"],
-  ["Objectives", "/objectives.html"],
-  ["Activities", "/activities.html"],
-  ["Strength", "/strength.html"],
-  ["Projects", "/projects.html"],
-  ["Gallery", "/photo-gallery.html"],
-  ["News", "/news.html"],
-  ["Contact", "/contact.html"],
+  ["Home", page()],
+  ["About Us", page("about-us.html")],
+  ["Objectives", page("objectives.html")],
+  ["Activities", page("activities.html")],
+  ["Strength", page("strength.html")],
+  ["Projects", page("projects.html")],
+  ["Gallery", page("photo-gallery.html")],
+  ["News", page("news.html")],
+  ["Contact", page("contact.html")],
 ];
 
 function Header() {
@@ -30,7 +34,7 @@ function Header() {
 
   return (
     <>
-      {/* SAME TOP INFORMATION BAR AS CONTACT PAGE */}
+      {/* TOP INFORMATION BAR */}
       <div className="home-topline">
         <div className="home-shell home-topline-inner">
           <span>
@@ -39,8 +43,8 @@ function Header() {
           </span>
 
           <div>
-            <a href="/news.html">Latest News</a>
-            <a href="/contact.html">Get in touch</a>
+            <a href={page("news.html")}>Latest News</a>
+            <a href={page("contact.html")}>Get in touch</a>
           </div>
         </div>
       </div>
@@ -51,7 +55,7 @@ function Header() {
 
           <a
             className="home-brand"
-            href="/"
+            href={page()}
             aria-label="Vijaya Odisha home"
           >
             <img
@@ -60,6 +64,7 @@ function Header() {
             />
           </a>
 
+          {/* DESKTOP NAVIGATION */}
           <nav
             className="home-desktop-nav"
             aria-label="Main navigation"
@@ -74,11 +79,15 @@ function Header() {
               </a>
             ))}
 
-            <a className="home-nav-donate" href="/donate.html">
+            <a
+              className="home-nav-donate"
+              href={page("donate.html")}
+            >
               Support Us <span>↗</span>
             </a>
           </nav>
 
+          {/* MOBILE MENU BUTTON */}
           <button
             className={`home-menu-toggle ${menuOpen ? "open" : ""}`}
             onClick={() => setMenuOpen(v => !v)}
@@ -90,6 +99,7 @@ function Header() {
           </button>
         </div>
 
+        {/* MOBILE NAVIGATION */}
         <nav
           className={`home-mobile-nav ${menuOpen ? "open" : ""}`}
           aria-label="Mobile navigation"
@@ -105,7 +115,7 @@ function Header() {
           ))}
 
           <a
-            href="/donate.html"
+            href={page("donate.html")}
             onClick={() => setMenuOpen(false)}
           >
             Support Us ↗
@@ -126,9 +136,11 @@ function SectionIntro({
   return (
     <div className={`home-section-intro ${align}`}>
       <span className="home-eyebrow">{eyebrow}</span>
+
       <h2>
         {title} <em>{accent}</em>
       </h2>
+
       {copy && <p>{copy}</p>}
     </div>
   );
@@ -140,11 +152,15 @@ function Footer() {
       <div className="home-shell home-footer-grid">
 
         <div className="home-footer-about">
-          <a className="home-brand home-footer-brand" href="/">
+          <a
+            className="home-brand home-footer-brand"
+            href={page()}
+          >
             <img
               src={`${A}vijay-odisha-logo.jpg`}
               alt="Vijaya Odisha logo"
             />
+
             <span>
               <strong>VIJAYA</strong>
               <small>ODISHA</small>
@@ -163,25 +179,29 @@ function Footer() {
 
         <div>
           <h3>Discover</h3>
-          <a href="/about-us.html">About Us</a>
-          <a href="/objectives.html">Our Objectives</a>
-          <a href="/activities.html">Activities</a>
-          <a href="/strength.html">Our Strength</a>
+          <a href={page("about-us.html")}>About Us</a>
+          <a href={page("objectives.html")}>Our Objectives</a>
+          <a href={page("activities.html")}>Activities</a>
+          <a href={page("strength.html")}>Our Strength</a>
         </div>
 
         <div>
           <h3>Explore</h3>
-          <a href="/projects.html">Projects</a>
-          <a href="/photo-gallery.html">Photo Gallery</a>
-          <a href="/news.html">News & Updates</a>
-          <a href="/donate.html">Support Our Work</a>
+          <a href={page("projects.html")}>Projects</a>
+          <a href={page("photo-gallery.html")}>Photo Gallery</a>
+          <a href={page("news.html")}>News & Updates</a>
+          <a href={page("donate.html")}>Support Our Work</a>
         </div>
 
         <div>
           <h3>Contact</h3>
           <p>Bhubaneswar, Odisha</p>
           <p>Working since 1996</p>
-          <a className="home-footer-contact" href="/contact.html">
+
+          <a
+            className="home-footer-contact"
+            href={page("contact.html")}
+          >
             Connect with us <span>↗</span>
           </a>
         </div>
@@ -256,12 +276,15 @@ export default function Home() {
               <div className="home-hero-actions">
                 <a
                   className="home-button home-button-primary"
-                  href="/about-us.html"
+                  href={page("about-us.html")}
                 >
                   Discover Vijaya <span>↗</span>
                 </a>
 
-                <a className="home-text-link" href="/activities.html">
+                <a
+                  className="home-text-link"
+                  href={page("activities.html")}
+                >
                   Explore our work <span>→</span>
                 </a>
               </div>
@@ -293,7 +316,9 @@ export default function Home() {
                 <span className="home-bubble-label">
                   ESTABLISHED
                 </span>
+
                 <strong>1996</strong>
+
                 <span className="home-bubble-caption">
                   Our journey<br />of service
                 </span>
@@ -336,16 +361,19 @@ export default function Home() {
 
               <a
                 className="home-focus-card home-reveal"
-                href="/objectives.html"
+                href={page("objectives.html")}
               >
                 <span className="home-card-index">01 / WOMEN</span>
                 <span className="home-focus-symbol">↗</span>
+
                 <div>
                   <h3>Women's Welfare</h3>
+
                   <p>
                     Supporting women through empowerment, education
                     and rehabilitation programmes.
                   </p>
+
                   <span className="home-card-link">
                     Explore focus area <b>→</b>
                   </span>
@@ -354,16 +382,19 @@ export default function Home() {
 
               <a
                 className="home-focus-card home-focus-card-tint home-reveal"
-                href="/activities.html"
+                href={page("activities.html")}
               >
                 <span className="home-card-index">02 / CHILDREN</span>
                 <span className="home-focus-symbol">↗</span>
+
                 <div>
                   <h3>Child Development</h3>
+
                   <p>
                     Working towards education, protection
                     and development of children.
                   </p>
+
                   <span className="home-card-link">
                     Explore focus area <b>→</b>
                   </span>
@@ -372,16 +403,19 @@ export default function Home() {
 
               <a
                 className="home-focus-card home-reveal"
-                href="/projects.html"
+                href={page("projects.html")}
               >
                 <span className="home-card-index">03 / COMMUNITY</span>
                 <span className="home-focus-symbol">↗</span>
+
                 <div>
                   <h3>Community Development</h3>
+
                   <p>
                     Building stronger communities through
                     meaningful social initiatives.
                   </p>
+
                   <span className="home-card-link">
                     Explore focus area <b>→</b>
                   </span>
@@ -414,7 +448,7 @@ export default function Home() {
 
               <a
                 className="home-button home-button-light"
-                href="/objectives.html"
+                href={page("objectives.html")}
               >
                 View our objectives <span>↗</span>
               </a>
@@ -428,10 +462,12 @@ export default function Home() {
               ].map(item => (
                 <div className="home-objective-row" key={item[0]}>
                   <span>{item[0]}</span>
+
                   <div>
                     <h3>{item[1]}</h3>
                     <p>{item[2]}</p>
                   </div>
+
                   <b>↗</b>
                 </div>
               ))}
@@ -481,12 +517,13 @@ export default function Home() {
 
               <a
                 className="home-activity-card home-reveal"
-                href="/activities.html"
+                href={page("activities.html")}
               >
                 <img
                   src={`${A}IMG-20231203-WA0049.jpg`}
                   alt="Vijaya Odisha community outreach activity"
                 />
+
                 <div>
                   <span>01 / WELFARE</span>
                   <h3>Relief & Rehabilitation</h3>
@@ -496,12 +533,13 @@ export default function Home() {
 
               <a
                 className="home-activity-card home-reveal"
-                href="/activities.html"
+                href={page("activities.html")}
               >
                 <img
                   src={`${A}IMG-20240719-WA0028.jpg`}
                   alt="Community health and support programme"
                 />
+
                 <div>
                   <span>02 / HEALTH</span>
                   <h3>Mobile Medical Services</h3>
@@ -511,12 +549,13 @@ export default function Home() {
 
               <a
                 className="home-activity-card home-reveal"
-                href="/activities.html"
+                href={page("activities.html")}
               >
                 <img
                   src={`${A}IMG-20240719-WA0053.jpg`}
                   alt="Training and learning programme"
                 />
+
                 <div>
                   <span>03 / LEARNING</span>
                   <h3>Training Programmes</h3>
@@ -526,12 +565,13 @@ export default function Home() {
 
               <a
                 className="home-activity-card home-reveal"
-                href="/activities.html"
+                href={page("activities.html")}
               >
                 <img
                   src={`${A}IMG-20230720-WA0065.jpg`}
                   alt="Community development gathering"
                 />
+
                 <div>
                   <span>04 / COMMUNITY</span>
                   <h3>Community Development</h3>
@@ -544,7 +584,7 @@ export default function Home() {
             <div className="home-centered-link">
               <a
                 className="home-button home-button-outline"
-                href="/activities.html"
+                href={page("activities.html")}
               >
                 View all activities <span>↗</span>
               </a>
@@ -588,7 +628,10 @@ export default function Home() {
                 that meaningful progress begins within communities.
               </p>
 
-              <a className="home-text-link" href="/photo-gallery.html">
+              <a
+                className="home-text-link"
+                href={page("photo-gallery.html")}
+              >
                 Explore our photo stories <span>→</span>
               </a>
             </div>
@@ -618,7 +661,7 @@ export default function Home() {
 
             <a
               className="home-button home-button-light"
-              href="/donate.html"
+              href={page("donate.html")}
             >
               Support Vijaya <span>↗</span>
             </a>
