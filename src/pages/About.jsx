@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import SiteHeader from "../components/SiteHeader";
 
-const A = "/assets/images/";
+const A = `${import.meta.env.BASE_URL}assets/images/`;
 
 /* =========================================
    REVEAL ANIMATION COMPONENT
