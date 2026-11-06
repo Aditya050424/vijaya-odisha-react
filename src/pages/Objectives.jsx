@@ -2,7 +2,10 @@
 import { useEffect, useState } from "react";
 import SiteHeader from "../components/SiteHeader";
 
-const A = "/assets/images/";
+// GitHub Pages base path
+const BASE = import.meta.env.BASE_URL;
+const A = `${BASE}assets/images/`;
+const page = (path = "") => `${BASE}${path}`;
 
 const objectives = [
     {
@@ -63,7 +66,7 @@ function ObjectivesFooter() {
 
                 <div className="objectives-footer-intro">
 
-                    <a href="/" className="objectives-brand objectives-footer-brand">
+                    <a href={page()} className="objectives-brand objectives-footer-brand">
                         <img
                             src={`${A}vijay-odisha-logo.jpg`}
                             alt="Vijaya Odisha Logo"
@@ -89,25 +92,25 @@ function ObjectivesFooter() {
 
                 <div>
                     <h3>Discover</h3>
-                    <a href="/about-us.html">About Us</a>
-                    <a href="/objectives.html">Objectives</a>
-                    <a href="/activities.html">Activities</a>
-                    <a href="/strength.html">Strength</a>
+                    <a href={page("about-us.html")}>About Us</a>
+                    <a href={page("objectives.html")}>Objectives</a>
+                    <a href={page("activities.html")}>Activities</a>
+                    <a href={page("strength.html")}>Strength</a>
                 </div>
 
                 <div>
                     <h3>Explore</h3>
-                    <a href="/projects.html">Projects</a>
-                    <a href="/photo-gallery.html">Gallery</a>
-                    <a href="/news.html">News</a>
-                    <a href="/donate.html">Donate</a>
+                    <a href={page("projects.html")}>Projects</a>
+                    <a href={page("photo-gallery.html")}>Gallery</a>
+                    <a href={page("news.html")}>News</a>
+                    <a href={page("donate.html")}>Donate</a>
                 </div>
 
                 <div>
                     <h3>Contact</h3>
                     <p>Bhubaneswar, Odisha</p>
                     <p>Serving communities since 1996</p>
-                    <a href="/contact.html" className="objectives-footer-link">
+                    <a href={page("contact.html")} className="objectives-footer-link">
                         Get in touch ↗
                     </a>
                 </div>
@@ -181,7 +184,7 @@ export default function Objectives() {
                         <div className="objectives-hero-content">
 
                             <div className="objectives-breadcrumb">
-                                <a href="/">Home</a>
+                                <a href={page()}>Home</a>
                                 <span>/</span>
                                 <span>Objectives</span>
                             </div>
@@ -242,7 +245,6 @@ export default function Objectives() {
 
                 </section>
 
-
                 {/* =====================================
                     INTRODUCTION
                 ===================================== */}
@@ -283,7 +285,6 @@ export default function Objectives() {
 
                 </section>
 
-
                 {/* =====================================
                     OBJECTIVE CARDS
                 ===================================== */}
@@ -316,7 +317,6 @@ export default function Objectives() {
                             </p>
 
                         </ObjectivesReveal>
-
 
                         <div className="objectives-card-grid">
 
@@ -391,7 +391,6 @@ export default function Objectives() {
 
                 </section>
 
-
                 {/* =====================================
                     OUR APPROACH
                 ===================================== */}
@@ -413,7 +412,6 @@ export default function Objectives() {
                             </div>
 
                         </ObjectivesReveal>
-
 
                         <ObjectivesReveal className="objectives-approach-content">
 
@@ -465,7 +463,7 @@ export default function Objectives() {
                             </div>
 
                             <a
-                                href="/activities.html"
+                                href={page("activities.html")}
                                 className="objectives-approach-link"
                             >
                                 Explore our activities <span>→</span>
@@ -476,7 +474,6 @@ export default function Objectives() {
                     </div>
 
                 </section>
-
 
                 {/* =====================================
                     CALL TO ACTION
@@ -508,11 +505,11 @@ export default function Objectives() {
 
                         <div className="objectives-cta-buttons">
 
-                            <a href="/donate.html" className="objectives-cta-primary">
+                            <a href={page("donate.html")} className="objectives-cta-primary">
                                 Support Our Work <span>↗</span>
                             </a>
 
-                            <a href="/contact.html" className="objectives-cta-secondary">
+                            <a href={page("contact.html")} className="objectives-cta-secondary">
                                 Contact Us <span>→</span>
                             </a>
 

@@ -1,8 +1,9 @@
-
 import { useEffect } from "react";
 import SiteHeader from "../components/SiteHeader";
 
-const A = `${import.meta.env.BASE_URL}assets/images/`;
+const BASE = import.meta.env.BASE_URL;
+const A = `${BASE}assets/images/`;
+const page = (path = "") => `${BASE}${path}`;
 
 /* =========================================
    REVEAL ANIMATION COMPONENT
@@ -26,7 +27,7 @@ function AboutFooter() {
             <div className="about-container about-footer-grid">
 
                 <div className="about-footer-intro">
-                    <a href="/" className="about-brand about-footer-brand">
+                    <a href={page()} className="about-brand about-footer-brand">
                         <img
                             src={`${A}vijay-odisha-logo.jpg`}
                             alt="Vijaya Odisha Logo"
@@ -50,18 +51,18 @@ function AboutFooter() {
 
                 <div>
                     <h3>Discover</h3>
-                    <a href="/about-us.html">About Us</a>
-                    <a href="/objectives.html">Objectives</a>
-                    <a href="/activities.html">Activities</a>
-                    <a href="/strength.html">Strength</a>
+                    <a href={page("about-us.html")}>About Us</a>
+                    <a href={page("objectives.html")}>Objectives</a>
+                    <a href={page("activities.html")}>Activities</a>
+                    <a href={page("strength.html")}>Strength</a>
                 </div>
 
                 <div>
                     <h3>Explore</h3>
-                    <a href="/projects.html">Projects</a>
-                    <a href="/photo-gallery.html">Gallery</a>
-                    <a href="/news.html">News</a>
-                    <a href="/donate.html">Donate</a>
+                    <a href={page("projects.html")}>Projects</a>
+                    <a href={page("photo-gallery.html")}>Gallery</a>
+                    <a href={page("news.html")}>News</a>
+                    <a href={page("donate.html")}>Donate</a>
                 </div>
 
                 <div>
@@ -69,7 +70,7 @@ function AboutFooter() {
                     <p>Bhubaneswar, Odisha</p>
                     <p>Serving communities since 1996</p>
 
-                    <a href="/contact.html" className="about-footer-link">
+                    <a href={page("contact.html")} className="about-footer-link">
                         Get in touch ↗
                     </a>
                 </div>
@@ -147,7 +148,7 @@ export default function About() {
                         <div className="about-hero-content">
 
                             <div className="about-breadcrumb">
-                                <a href="/">Home</a>
+                                <a href={page()}>Home</a>
                                 <span>/</span>
                                 <span>About Us</span>
                             </div>
@@ -480,7 +481,7 @@ export default function About() {
                                     and development of women and children.
                                 </p>
 
-                                <a href="/objectives.html">
+                                <a href={page("objectives.html")}>
                                     Explore our objectives <span>↗</span>
                                 </a>
 
@@ -505,7 +506,7 @@ export default function About() {
                                     social welfare and rehabilitation.
                                 </p>
 
-                                <a href="/activities.html">
+                                <a href={page("activities.html")}>
                                     Explore our activities <span>↗</span>
                                 </a>
 
@@ -530,7 +531,7 @@ export default function About() {
                                     towards stronger and more inclusive communities.
                                 </p>
 
-                                <a href="/projects.html">
+                                <a href={page("projects.html")}>
                                     Explore our projects <span>↗</span>
                                 </a>
 
@@ -569,7 +570,7 @@ export default function About() {
                             </p>
 
                             <a
-                                href="/objectives.html"
+                                href={page("objectives.html")}
                                 className="about-text-link"
                             >
                                 Explore our objectives <span>→</span>
@@ -628,7 +629,7 @@ export default function About() {
                         </div>
 
                         <a
-                            href="/donate.html"
+                            href={page("donate.html")}
                             className="about-cta-button"
                         >
                             Support Vijaya <span>↗</span>

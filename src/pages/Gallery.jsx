@@ -2,7 +2,10 @@
 import { useEffect, useState } from "react";
 import SiteHeader from "../components/SiteHeader";
 
-const A = "/assets/images/";
+// GitHub Pages base path
+const BASE = import.meta.env.BASE_URL;
+const A = `${BASE}assets/images/`;
+const page = (path = "") => `${BASE}${path}`;
 
 const photos = [
     ["20190811_121222.jpg", "Vijaya Odisha", "Community Activity"],
@@ -56,12 +59,17 @@ const filters = [
     "Events",
 ];
 
+/* =========================================
+   FOOTER
+========================================= */
+
 function GalleryFooter() {
     return (
         <footer className="gallery-footer">
             <div className="gallery-container gallery-footer-grid">
+
                 <div className="gallery-footer-about">
-                    <a href="/">
+                    <a href={page()}>
                         <img
                             src={`${A}vijay-odisha-logo.jpg`}
                             alt="Vijaya Odisha"
@@ -78,25 +86,26 @@ function GalleryFooter() {
 
                 <div>
                     <h3>Discover</h3>
-                    <a href="/about-us.html">About Us</a>
-                    <a href="/objectives.html">Objectives</a>
-                    <a href="/activities.html">Activities</a>
-                    <a href="/strength.html">Strength</a>
+                    <a href={page("about-us.html")}>About Us</a>
+                    <a href={page("objectives.html")}>Objectives</a>
+                    <a href={page("activities.html")}>Activities</a>
+                    <a href={page("strength.html")}>Strength</a>
                 </div>
 
                 <div>
                     <h3>Explore</h3>
-                    <a href="/projects.html">Projects</a>
-                    <a href="/photo-gallery.html">Gallery</a>
-                    <a href="/news.html">News</a>
-                    <a href="/donate.html">Donate</a>
+                    <a href={page("projects.html")}>Projects</a>
+                    <a href={page("photo-gallery.html")}>Gallery</a>
+                    <a href={page("news.html")}>News</a>
+                    <a href={page("donate.html")}>Donate</a>
                 </div>
 
                 <div>
                     <h3>Contact</h3>
                     <p>Bhubaneswar, Odisha, India</p>
-                    <a href="/contact.html">Get in touch ↗</a>
+                    <a href={page("contact.html")}>Get in touch ↗</a>
                 </div>
+
             </div>
 
             <div className="gallery-footer-bottom">
@@ -108,6 +117,10 @@ function GalleryFooter() {
         </footer>
     );
 }
+
+/* =========================================
+   MAIN GALLERY PAGE
+========================================= */
 
 export default function Gallery() {
     const [activeFilter, setActiveFilter] = useState("All");
@@ -171,19 +184,22 @@ export default function Gallery() {
     return (
         <div className="gallery-page" id="gallery-top">
 
-            {/* Shared website navigation */}
+            {/* SHARED WEBSITE NAVIGATION */}
             <SiteHeader activePage="Gallery" />
 
             <main>
+
+                {/* HERO SECTION */}
                 <section className="gallery-hero">
                     <div className="gallery-container gallery-hero-inner">
+
                         <div className="gallery-hero-copy">
                             <span className="gallery-eyebrow">
                                 OUR STORIES · OUR PEOPLE
                             </span>
 
                             <div className="gallery-breadcrumb">
-                                <a href="/">Home</a>
+                                <a href={page()}>Home</a>
                                 <span>/</span>
                                 <span>Gallery</span>
                             </div>
@@ -208,6 +224,7 @@ export default function Gallery() {
                         </div>
 
                         <div className="gallery-hero-visual">
+
                             <div className="gallery-hero-photo gallery-hero-photo-main">
                                 <img
                                     src={`${A}IMG20250130122215-1024x576.jpg`}
@@ -226,15 +243,18 @@ export default function Gallery() {
                                 <strong>33</strong>
                                 <span>Moments from our journey</span>
                             </div>
+
                         </div>
                     </div>
                 </section>
 
+                {/* GALLERY COLLECTION */}
                 <section
                     className="gallery-collection"
                     id="gallery-collection"
                 >
                     <div className="gallery-container">
+
                         <div className="gallery-section-heading">
                             <div>
                                 <span className="gallery-eyebrow">
@@ -252,6 +272,7 @@ export default function Gallery() {
                             </p>
                         </div>
 
+                        {/* CATEGORY FILTERS */}
                         <div
                             className="gallery-filter-bar"
                             aria-label="Filter gallery"
@@ -275,6 +296,7 @@ export default function Gallery() {
                             </span>
                         </div>
 
+                        {/* PHOTO GRID */}
                         <div className="gallery-photo-grid">
                             {visiblePhotos.map((photo, index) => (
                                 <button
@@ -308,11 +330,14 @@ export default function Gallery() {
                                 No photographs in this category.
                             </p>
                         )}
+
                     </div>
                 </section>
 
+                {/* CLOSING SECTION */}
                 <section className="gallery-closing">
                     <div className="gallery-container gallery-closing-inner">
+
                         <span className="gallery-eyebrow">
                             BE PART OF THE STORY
                         </span>
@@ -328,15 +353,18 @@ export default function Gallery() {
                             more meaningful moments.
                         </p>
 
-                        <a href="/contact.html">
+                        <a href={page("contact.html")}>
                             Connect with Vijaya Odisha ↗
                         </a>
+
                     </div>
                 </section>
+
             </main>
 
             <GalleryFooter />
 
+            {/* PHOTO LIGHTBOX */}
             {selectedPhoto && (
                 <div
                     className="gallery-lightbox"
@@ -391,6 +419,7 @@ export default function Gallery() {
                     </button>
                 </div>
             )}
+
         </div>
     );
 }

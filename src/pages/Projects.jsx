@@ -2,7 +2,10 @@
 import { useEffect, useState } from "react";
 import SiteHeader from "../components/SiteHeader";
 
-const A = "/assets/images/";
+// GitHub Pages base path
+const BASE = import.meta.env.BASE_URL;
+const A = `${BASE}assets/images/`;
+const page = (path = "") => `${BASE}${path}`;
 
 const locations = [
     {
@@ -82,12 +85,17 @@ const locations = [
     },
 ];
 
+/* =========================================
+   FOOTER
+========================================= */
+
 function ProjectsFooter() {
     return (
         <footer className="projects-footer">
             <div className="projects-container projects-footer-grid">
+
                 <div className="projects-footer-about">
-                    <a href="/">
+                    <a href={page()}>
                         <img
                             src={`${A}vijay-odisha-logo.jpg`}
                             alt="Vijaya Odisha"
@@ -105,18 +113,18 @@ function ProjectsFooter() {
 
                 <div>
                     <h3>Discover</h3>
-                    <a href="/about-us.html">About Us</a>
-                    <a href="/objectives.html">Objectives</a>
-                    <a href="/activities.html">Activities</a>
-                    <a href="/strength.html">Strength</a>
+                    <a href={page("about-us.html")}>About Us</a>
+                    <a href={page("objectives.html")}>Objectives</a>
+                    <a href={page("activities.html")}>Activities</a>
+                    <a href={page("strength.html")}>Strength</a>
                 </div>
 
                 <div>
                     <h3>Explore</h3>
-                    <a href="/projects.html">Projects</a>
-                    <a href="/photo-gallery.html">Gallery</a>
-                    <a href="/news.html">News</a>
-                    <a href="/donate.html">Donate</a>
+                    <a href={page("projects.html")}>Projects</a>
+                    <a href={page("photo-gallery.html")}>Gallery</a>
+                    <a href={page("news.html")}>News</a>
+                    <a href={page("donate.html")}>Donate</a>
                 </div>
 
                 <div>
@@ -126,8 +134,9 @@ function ProjectsFooter() {
                         India, Saheed Nagar, Bhubaneswar, Pin-751007,
                         Dist: Khurdha, Odisha.
                     </p>
-                    <a href="/contact.html">Get in touch ↗</a>
+                    <a href={page("contact.html")}>Get in touch ↗</a>
                 </div>
+
             </div>
 
             <div className="projects-footer-bottom">
@@ -140,6 +149,10 @@ function ProjectsFooter() {
     );
 }
 
+/* =========================================
+   PROJECT LOCATION COMPONENT
+========================================= */
+
 function ProjectLocation({ location }) {
     return (
         <section
@@ -147,6 +160,7 @@ function ProjectLocation({ location }) {
             id={`project-location-${location.number}`}
         >
             <div className="projects-container project-location-inner">
+
                 <div className="project-location-aside">
                     <span className="project-location-number">
                         {location.number}
@@ -160,6 +174,7 @@ function ProjectLocation({ location }) {
                 </div>
 
                 <div className="project-location-main">
+
                     <div className="project-location-heading">
                         <div>
                             <span className="project-location-short">
@@ -179,6 +194,7 @@ function ProjectLocation({ location }) {
                     </p>
 
                     <div className="project-location-content">
+
                         <div className="project-location-activities">
                             <span className="projects-eyebrow">
                                 {location.introduction}
@@ -208,12 +224,17 @@ function ProjectLocation({ location }) {
 
                             <p>{location.additional}</p>
                         </aside>
+
                     </div>
                 </div>
             </div>
         </section>
     );
 }
+
+/* =========================================
+   MAIN PROJECTS PAGE
+========================================= */
 
 export default function Projects() {
     const [activeLocation, setActiveLocation] = useState("01");
@@ -265,20 +286,22 @@ export default function Projects() {
     return (
         <div className="projects-page" id="projects-top">
 
-            {/* SHARED HEADER — SAME AS STRENGTH AND ACTIVITIES */}
+            {/* SHARED HEADER */}
             <SiteHeader activePage="Projects" />
 
             <main>
+
                 {/* HERO SECTION */}
                 <section className="projects-hero">
                     <div className="projects-container projects-hero-inner">
+
                         <div className="projects-hero-copy">
                             <span className="projects-eyebrow">
                                 OUR WORK · OUR REACH
                             </span>
 
                             <div className="projects-breadcrumb">
-                                <a href="/">Home</a>
+                                <a href={page()}>Home</a>
                                 <span>/</span>
                                 <span>Projects</span>
                             </div>
@@ -322,6 +345,7 @@ export default function Projects() {
                                 />
                             </div>
                         </div>
+
                     </div>
                 </section>
                 {/* HERO SECTION ENDS HERE */}
@@ -332,6 +356,7 @@ export default function Projects() {
                     id="project-locations"
                 >
                     <div className="projects-container">
+
                         <div className="projects-location-nav-heading">
                             <span className="projects-eyebrow">
                                 EXPLORE BY LOCATION
@@ -357,6 +382,7 @@ export default function Projects() {
                                 </button>
                             ))}
                         </div>
+
                     </div>
                 </section>
 
@@ -371,6 +397,7 @@ export default function Projects() {
                 {/* CLOSING SECTION */}
                 <section className="projects-closing">
                     <div className="projects-container projects-closing-inner">
+
                         <div>
                             <span className="projects-eyebrow">
                                 OUR CONTINUING JOURNEY
@@ -389,16 +416,18 @@ export default function Projects() {
                         </div>
 
                         <div className="projects-closing-actions">
-                            <a href="/activities.html">
+                            <a href={page("activities.html")}>
                                 Explore our activities ↗
                             </a>
 
-                            <a href="/contact.html">
+                            <a href={page("contact.html")}>
                                 Connect with us
                             </a>
                         </div>
+
                     </div>
                 </section>
+
             </main>
 
             <ProjectsFooter />

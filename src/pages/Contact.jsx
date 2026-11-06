@@ -2,7 +2,11 @@
 import { useState } from "react";
 import SiteHeader from "../components/SiteHeader";
 
-const logo = "/assets/images/vijay-odisha-logo.jpg";
+const BASE = import.meta.env.BASE_URL;
+const A = `${BASE}assets/images/`;
+const page = (path = "") => `${BASE}${path}`;
+
+const logo = `${A}vijay-odisha-logo.jpg`;
 
 export default function Contact() {
     const [form, setForm] = useState({
@@ -75,7 +79,7 @@ export default function Contact() {
 
                             <div className="contact-hero-photo">
                                 <img
-                                    src="/assets/images/IMG20250130122215-1024x576.jpg"
+                                    src={`${A}IMG20250130122215-1024x576.jpg`}
                                     alt="Vijaya Odisha community initiative"
                                 />
                             </div>
@@ -297,8 +301,7 @@ export default function Contact() {
                             </button>
 
                             <p className="contact-form-disclaimer">
-                                This form opens your default email application. It does not
-                                send or store messages on this website.
+
                             </p>
 
                         </form>
@@ -322,7 +325,7 @@ export default function Contact() {
                             </h2>
                         </div>
 
-                        <a href="/about-us.html">
+                        <a href={page("about-us.html")}>
                             Discover our work <span>↗</span>
                         </a>
 
@@ -339,7 +342,7 @@ export default function Contact() {
 
                     <div className="contact-footer-about">
 
-                        <a href="/">
+                        <a href={page()}>
                             <img src={logo} alt="Vijaya Odisha" />
                         </a>
 
@@ -355,11 +358,11 @@ export default function Contact() {
 
                         <h3>Explore</h3>
 
-                        <a href="/about-us.html">About Us</a>
-                        <a href="/objectives.html">Objectives</a>
-                        <a href="/activities.html">Activities</a>
-                        <a href="/projects.html">Projects</a>
-                        <a href="/photo-gallery.html">Gallery</a>
+                        <a href={page("about-us.html")}>About Us</a>
+                        <a href={page("objectives.html")}>Objectives</a>
+                        <a href={page("activities.html")}>Activities</a>
+                        <a href={page("projects.html")}>Projects</a>
+                        <a href={page("photo-gallery.html")}>Gallery</a>
 
                     </div>
 
@@ -367,10 +370,10 @@ export default function Contact() {
 
                         <h3>Information</h3>
 
-                        <a href="/news.html">News</a>
-                        <a href="/strength.html">Strength</a>
-                        <a href="/contact.html">Contact</a>
-                        <a href="/donate.html">Donate</a>
+                        <a href={page("news.html")}>News</a>
+                        <a href={page("strength.html")}>Strength</a>
+                        <a href={page("contact.html")}>Contact</a>
+                        <a href={page("donate.html")}>Donate</a>
 
                     </div>
 

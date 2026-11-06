@@ -2,7 +2,10 @@
 import { useEffect, useState } from "react";
 import SiteHeader from "../components/SiteHeader";
 
-const A = "/assets/images/";
+// GitHub Pages base path
+const BASE = import.meta.env.BASE_URL;
+const A = `${BASE}assets/images/`;
+const page = (path = "") => `${BASE}${path}`;
 
 const stories = [
     {
@@ -12,7 +15,7 @@ const stories = [
         excerpt:
             "Education and learning initiatives help children and young people build confidence, skills and opportunities for the future.",
         image: "IMG20250130122215-1024x576.jpg",
-        link: "/projects.html",
+        link: "projects.html",
         linkText: "Explore our projects",
         featured: true,
     },
@@ -23,7 +26,7 @@ const stories = [
         excerpt:
             "Community initiatives encourage participation, awareness and cooperation among individuals and families.",
         image: "IMG-20231203-WA0048.jpg",
-        link: "/activities.html",
+        link: "activities.html",
         linkText: "Discover our activities",
     },
     {
@@ -33,7 +36,7 @@ const stories = [
         excerpt:
             "Skill development, awareness and opportunities can help women participate more actively in community life.",
         image: "IMG-20240321-WA0029.jpg",
-        link: "/projects.html",
+        link: "projects.html",
         linkText: "View project locations",
     },
     {
@@ -43,7 +46,7 @@ const stories = [
         excerpt:
             "Learning activities and educational support are important parts of building a more confident future.",
         image: "IMG-20220804-WA0025.jpg",
-        link: "/objectives.html",
+        link: "objectives.html",
         linkText: "Read our objectives",
     },
     {
@@ -53,7 +56,7 @@ const stories = [
         excerpt:
             "Local participation and collective effort are central to meaningful and sustainable community development.",
         image: "IMG-20240719-WA0053.jpg",
-        link: "/projects.html",
+        link: "projects.html",
         linkText: "Explore our work",
     },
     {
@@ -63,19 +66,24 @@ const stories = [
         excerpt:
             "A look at the people and activities that form part of Vijaya Odisha's continuing journey.",
         image: "IMG_20241203_121532.jpg",
-        link: "/photo-gallery.html",
+        link: "photo-gallery.html",
         linkText: "Visit the photo gallery",
     },
 ];
 
 const categories = ["All", "Education", "Community", "Women", "Events"];
 
+/* =========================================
+   FOOTER
+========================================= */
+
 function NewsFooter() {
     return (
         <footer className="news-footer">
             <div className="news-container news-footer-grid">
+
                 <div className="news-footer-about">
-                    <a href="/">
+                    <a href={page()}>
                         <img
                             src={`${A}vijay-odisha-logo.jpg`}
                             alt="Vijaya Odisha"
@@ -92,25 +100,26 @@ function NewsFooter() {
 
                 <div>
                     <h3>Discover</h3>
-                    <a href="/about-us.html">About Us</a>
-                    <a href="/objectives.html">Objectives</a>
-                    <a href="/activities.html">Activities</a>
-                    <a href="/strength.html">Strength</a>
+                    <a href={page("about-us.html")}>About Us</a>
+                    <a href={page("objectives.html")}>Objectives</a>
+                    <a href={page("activities.html")}>Activities</a>
+                    <a href={page("strength.html")}>Strength</a>
                 </div>
 
                 <div>
                     <h3>Explore</h3>
-                    <a href="/projects.html">Projects</a>
-                    <a href="/photo-gallery.html">Gallery</a>
-                    <a href="/news.html">News</a>
-                    <a href="/donate.html">Donate</a>
+                    <a href={page("projects.html")}>Projects</a>
+                    <a href={page("photo-gallery.html")}>Gallery</a>
+                    <a href={page("news.html")}>News</a>
+                    <a href={page("donate.html")}>Donate</a>
                 </div>
 
                 <div>
                     <h3>Contact</h3>
                     <p>Bhubaneswar, Odisha, India</p>
-                    <a href="/contact.html">Get in touch ↗</a>
+                    <a href={page("contact.html")}>Get in touch ↗</a>
                 </div>
+
             </div>
 
             <div className="news-footer-bottom">
@@ -122,6 +131,10 @@ function NewsFooter() {
         </footer>
     );
 }
+
+/* =========================================
+   MAIN NEWS PAGE
+========================================= */
 
 export default function News() {
     const [activeCategory, setActiveCategory] = useState("All");
@@ -140,20 +153,22 @@ export default function News() {
     return (
         <div className="news-page" id="news-top">
 
-            {/* Shared website navigation */}
+            {/* SHARED WEBSITE NAVIGATION */}
             <SiteHeader activePage="News" />
 
             <main>
+
                 {/* HERO */}
                 <section className="news-hero">
                     <div className="news-container news-hero-inner">
+
                         <div className="news-hero-copy">
                             <span className="news-eyebrow">
                                 VOICES · STORIES · UPDATES
                             </span>
 
                             <div className="news-breadcrumb">
-                                <a href="/">Home</a>
+                                <a href={page()}>Home</a>
                                 <span>/</span>
                                 <span>News</span>
                             </div>
@@ -176,6 +191,7 @@ export default function News() {
                         </div>
 
                         <div className="news-hero-art">
+
                             <div className="news-hero-image">
                                 <img
                                     src={`${A}IMG-20250310-WA0001-1024x461.jpg`}
@@ -194,6 +210,7 @@ export default function News() {
                             <div className="news-hero-index">
                                 01 / OUR STORIES
                             </div>
+
                         </div>
                     </div>
                 </section>
@@ -201,14 +218,16 @@ export default function News() {
                 {/* FEATURED STORY */}
                 <section className="news-featured-section">
                     <div className="news-container">
+
                         <div className="news-section-topline">
                             <span className="news-eyebrow">IN FOCUS</span>
                             <span>01 — FEATURED STORY</span>
                         </div>
 
                         <article className="news-featured">
+
                             <a
-                                href={featuredStory.link}
+                                href={page(featuredStory.link)}
                                 className="news-featured-image"
                                 aria-label="Explore education projects"
                             >
@@ -221,6 +240,7 @@ export default function News() {
                             </a>
 
                             <div className="news-featured-copy">
+
                                 <span className="news-story-category">
                                     {featuredStory.category}
                                 </span>
@@ -234,13 +254,15 @@ export default function News() {
                                 <p>{featuredStory.excerpt}</p>
 
                                 <a
-                                    href={featuredStory.link}
+                                    href={page(featuredStory.link)}
                                     className="news-read-link"
                                 >
                                     {featuredStory.linkText} <span>↗</span>
                                 </a>
+
                             </div>
                         </article>
+
                     </div>
                 </section>
 
@@ -250,6 +272,7 @@ export default function News() {
                     id="news-stories"
                 >
                     <div className="news-container">
+
                         <div className="news-stories-heading">
                             <div>
                                 <span className="news-eyebrow">
@@ -267,7 +290,9 @@ export default function News() {
                             </p>
                         </div>
 
+                        {/* CATEGORY FILTERS */}
                         <div className="news-filter-row">
+
                             <div className="news-filters">
                                 {categories.map((category) => (
                                     <button
@@ -285,8 +310,10 @@ export default function News() {
                             </div>
 
                             <span>{filteredStories.length} stories</span>
+
                         </div>
 
+                        {/* STORY CARDS */}
                         <div className="news-card-grid">
                             {filteredStories.map((story, index) => (
                                 <article
@@ -296,8 +323,9 @@ export default function News() {
                                         animationDelay: `${index * 70}ms`,
                                     }}
                                 >
+
                                     <a
-                                        href={story.link}
+                                        href={page(story.link)}
                                         className="news-card-image"
                                     >
                                         <img
@@ -311,29 +339,34 @@ export default function News() {
                                     </a>
 
                                     <div className="news-card-content">
+
                                         <span className="news-story-category">
                                             {story.category}
                                         </span>
 
                                         <h3>{story.title}</h3>
+
                                         <p>{story.excerpt}</p>
 
                                         <a
-                                            href={story.link}
+                                            href={page(story.link)}
                                             className="news-card-link"
                                         >
                                             {story.linkText} <span>↗</span>
                                         </a>
+
                                     </div>
                                 </article>
                             ))}
                         </div>
+
                     </div>
                 </section>
 
                 {/* CTA */}
                 <section className="news-cta">
                     <div className="news-container news-cta-inner">
+
                         <div>
                             <span className="news-eyebrow">
                                 STAY CONNECTED
@@ -347,23 +380,30 @@ export default function News() {
                         </div>
 
                         <div className="news-cta-copy">
+
                             <p>
                                 Learn more about our initiatives, explore our work
                                 or connect with Vijaya Odisha.
                             </p>
 
                             <div>
-                                <a href="/projects.html">
+                                <a href={page("projects.html")}>
                                     Explore our projects ↗
                                 </a>
-                                <a href="/contact.html">Contact us</a>
+
+                                <a href={page("contact.html")}>
+                                    Contact us
+                                </a>
                             </div>
+
                         </div>
                     </div>
                 </section>
+
             </main>
 
             <NewsFooter />
+
         </div>
     );
 }

@@ -1,7 +1,11 @@
 
 import SiteHeader from "../components/SiteHeader";
 
-const logo = "/assets/images/vijay-odisha-logo.jpg";
+// GitHub Pages base path
+const BASE = import.meta.env.BASE_URL;
+const A = `${BASE}assets/images/`;
+const logo = `${A}vijay-odisha-logo.jpg`;
+const page = (path = "") => `${BASE}${path}`;
 
 export default function Donate() {
 
@@ -35,7 +39,7 @@ export default function Donate() {
     return (
         <div className="donate-page" id="top">
 
-            {/* SHARED HEADER — SAME AS OTHER PAGES */}
+            {/* SHARED HEADER */}
             <SiteHeader activePage="Donate" />
 
             <main>
@@ -74,7 +78,7 @@ export default function Donate() {
 
                             <div className="donate-hero-image">
                                 <img
-                                    src="/assets/images/IMG20250130122215-1024x576.jpg"
+                                    src={`${A}IMG20250130122215-1024x576.jpg`}
                                     alt="Community initiative by Vijaya Odisha"
                                 />
                             </div>
@@ -114,6 +118,7 @@ export default function Donate() {
                         </h2>
 
                         <div className="donate-intro-copy">
+
                             <p>
                                 Vijaya Odisha works towards the welfare and
                                 development of communities through social
@@ -128,9 +133,10 @@ export default function Donate() {
                                 every meaningful effort counts.
                             </p>
 
-                            <a href="/about-us.html">
+                            <a href={page("about-us.html")}>
                                 GET TO KNOW VIJAYA <span>↗</span>
                             </a>
+
                         </div>
 
                     </div>
@@ -141,6 +147,7 @@ export default function Donate() {
                 <section className="donate-ways" id="ways-to-support">
 
                     <div className="donate-ways-heading">
+
                         <div>
                             <div className="donate-section-label">
                                 MAKE A DIFFERENCE
@@ -157,6 +164,7 @@ export default function Donate() {
                             Choose how you would like to contribute
                             to a more inclusive and empowered society.
                         </p>
+
                     </div>
 
                     <div className="donate-card-grid">
@@ -172,6 +180,7 @@ export default function Donate() {
                                 </div>
 
                                 <div className="donate-card-content">
+
                                     <span className="donate-card-detail">
                                         {option.detail}
                                     </span>
@@ -180,9 +189,10 @@ export default function Donate() {
 
                                     <p>{option.description}</p>
 
-                                    <a href="/contact.html">
+                                    <a href={page("contact.html")}>
                                         START A CONVERSATION <span>↗</span>
                                     </a>
+
                                 </div>
 
                             </article>
@@ -197,7 +207,7 @@ export default function Donate() {
 
                     <div className="donate-feature-image">
                         <img
-                            src="/assets/images/IMG_20241203_121532.jpg"
+                            src={`${A}IMG_20241203_121532.jpg`}
                             alt="Vijaya Odisha community work"
                         />
                     </div>
@@ -223,7 +233,7 @@ export default function Donate() {
                             contribute to community development.
                         </p>
 
-                        <a href="/contact.html">
+                        <a href={page("contact.html")}>
                             TALK TO OUR TEAM <span>↗</span>
                         </a>
 
@@ -283,7 +293,7 @@ export default function Donate() {
 
                     <div className="donate-footer-about">
 
-                        <a href="/">
+                        <a href={page()}>
                             <img src={logo} alt="Vijaya Odisha" />
                         </a>
 
@@ -300,19 +310,19 @@ export default function Donate() {
 
                     <div className="donate-footer-column">
                         <h3>Explore</h3>
-                        <a href="/about-us.html">About Us</a>
-                        <a href="/objectives.html">Objectives</a>
-                        <a href="/activities.html">Activities</a>
-                        <a href="/strength.html">Strength</a>
-                        <a href="/projects.html">Projects</a>
+                        <a href={page("about-us.html")}>About Us</a>
+                        <a href={page("objectives.html")}>Objectives</a>
+                        <a href={page("activities.html")}>Activities</a>
+                        <a href={page("strength.html")}>Strength</a>
+                        <a href={page("projects.html")}>Projects</a>
                     </div>
 
                     <div className="donate-footer-column">
                         <h3>Discover</h3>
-                        <a href="/photo-gallery.html">Gallery</a>
-                        <a href="/news.html">News</a>
-                        <a href="/contact.html">Contact</a>
-                        <a href="/donate.html">Support Us</a>
+                        <a href={page("photo-gallery.html")}>Gallery</a>
+                        <a href={page("news.html")}>News</a>
+                        <a href={page("contact.html")}>Contact</a>
+                        <a href={page("donate.html")}>Support Us</a>
                     </div>
 
                     <div className="donate-footer-column donate-footer-contact">
@@ -346,7 +356,7 @@ export default function Donate() {
                         href="#top"
                         onClick={() => window.scrollTo({
                             top: 0,
-                            behavior: "smooth"
+                            behavior: "smooth",
                         })}
                     >
                         Back to top ↑

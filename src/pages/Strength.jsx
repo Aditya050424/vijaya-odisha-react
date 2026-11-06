@@ -2,7 +2,10 @@
 import { useEffect, useState } from "react";
 import SiteHeader from "../components/SiteHeader";
 
-const A = "/assets/images/";
+// GitHub Pages base path
+const BASE = import.meta.env.BASE_URL;
+const A = `${BASE}assets/images/`;
+const page = (path = "") => `${BASE}${path}`;
 
 const strengths = [
     {
@@ -67,12 +70,17 @@ const strengths = [
     },
 ];
 
+/* =========================================
+   FOOTER
+========================================= */
+
 function StrengthFooter() {
     return (
         <footer className="strength-footer">
             <div className="strength-container strength-footer-grid">
+
                 <div className="strength-footer-about">
-                    <a href="/">
+                    <a href={page()}>
                         <img
                             src={`${A}vijay-odisha-logo.jpg`}
                             alt="Vijaya Odisha"
@@ -90,26 +98,27 @@ function StrengthFooter() {
 
                 <div>
                     <h3>Discover</h3>
-                    <a href="/about-us.html">About Us</a>
-                    <a href="/objectives.html">Objectives</a>
-                    <a href="/activities.html">Activities</a>
-                    <a href="/strength.html">Strength</a>
+                    <a href={page("about-us.html")}>About Us</a>
+                    <a href={page("objectives.html")}>Objectives</a>
+                    <a href={page("activities.html")}>Activities</a>
+                    <a href={page("strength.html")}>Strength</a>
                 </div>
 
                 <div>
                     <h3>Explore</h3>
-                    <a href="/projects.html">Projects</a>
-                    <a href="/photo-gallery.html">Gallery</a>
-                    <a href="/news.html">News</a>
-                    <a href="/donate.html">Donate</a>
+                    <a href={page("projects.html")}>Projects</a>
+                    <a href={page("photo-gallery.html")}>Gallery</a>
+                    <a href={page("news.html")}>News</a>
+                    <a href={page("donate.html")}>Donate</a>
                 </div>
 
                 <div>
                     <h3>Contact</h3>
                     <p>Bhubaneswar, Odisha</p>
                     <p>Serving communities since 1996</p>
-                    <a href="/contact.html">Get in touch ↗</a>
+                    <a href={page("contact.html")}>Get in touch ↗</a>
                 </div>
+
             </div>
 
             <div className="strength-footer-bottom">
@@ -121,6 +130,10 @@ function StrengthFooter() {
         </footer>
     );
 }
+
+/* =========================================
+   MAIN STRENGTH PAGE
+========================================= */
 
 export default function Strength() {
     const [expanded, setExpanded] = useState("01");
@@ -136,10 +149,11 @@ export default function Strength() {
     return (
         <div className="strength-page" id="strength-top">
 
-            {/* SHARED HEADER — SAME AS ACTIVITIES PAGE */}
+            {/* SHARED HEADER */}
             <SiteHeader activePage="Strength" />
 
             <main>
+
                 {/* HERO */}
                 <section className="strength-hero">
                     <div className="strength-container strength-hero-grid">
@@ -150,7 +164,7 @@ export default function Strength() {
                             </span>
 
                             <div className="strength-breadcrumb">
-                                <a href="/">Home</a>
+                                <a href={page()}>Home</a>
                                 <span>/</span>
                                 <span>Strength</span>
                             </div>
@@ -189,7 +203,7 @@ export default function Strength() {
                                 />
                             </div>
 
-                            {/* REDESIGNED RESOURCE STRENGTH OVERLAY */}
+                            {/* RESOURCE STRENGTH OVERLAY */}
                             <div className="strength-hero-overlay">
                                 <span className="strength-overlay-label">
                                     <i />
@@ -214,6 +228,7 @@ export default function Strength() {
                 {/* INTRODUCTION */}
                 <section className="strength-intro">
                     <div className="strength-container strength-intro-grid">
+
                         <div>
                             <span className="strength-eyebrow">
                                 OUR STRENGTH
@@ -231,6 +246,7 @@ export default function Strength() {
                             infrastructure, transportation, communication
                             facilities and a strong network of organizations.
                         </p>
+
                     </div>
                 </section>
 
@@ -240,6 +256,7 @@ export default function Strength() {
                     id="strength-resources"
                 >
                     <div className="strength-container">
+
                         <div className="strength-explorer-heading">
                             <div>
                                 <span className="strength-eyebrow">
@@ -332,6 +349,7 @@ export default function Strength() {
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </section>
@@ -339,6 +357,7 @@ export default function Strength() {
                 {/* SATISFACTION */}
                 <section className="strength-satisfaction">
                     <div className="strength-container strength-satisfaction-grid">
+
                         <div className="strength-satisfaction-side">
                             <span className="strength-eyebrow">
                                 OUR SATISFACTION
@@ -383,16 +402,18 @@ export default function Strength() {
                                 and poverty.
                             </p>
 
-                            <a href="/activities.html">
+                            <a href={page("activities.html")}>
                                 Explore our activities <span>↗</span>
                             </a>
                         </div>
+
                     </div>
                 </section>
 
                 {/* CTA */}
                 <section className="strength-cta">
                     <div className="strength-container strength-cta-inner">
+
                         <div>
                             <span className="strength-eyebrow">
                                 SUPPORT OUR WORK
@@ -410,11 +431,13 @@ export default function Strength() {
                         </div>
 
                         <div className="strength-cta-actions">
-                            <a href="/donate.html">Support Vijaya ↗</a>
-                            <a href="/contact.html">Get in touch</a>
+                            <a href={page("donate.html")}>Support Vijaya ↗</a>
+                            <a href={page("contact.html")}>Get in touch</a>
                         </div>
+
                     </div>
                 </section>
+
             </main>
 
             <StrengthFooter />

@@ -2,7 +2,9 @@
 import { useEffect, useMemo, useState } from "react";
 import SiteHeader from "../components/SiteHeader";
 
-const A = "/assets/images/";
+const BASE = import.meta.env.BASE_URL;
+const A = `${BASE}assets/images/`;
+const page = (path = "") => `${BASE}${path}`;
 
 const activities = [
     {
@@ -125,8 +127,9 @@ function ActivitiesFooter() {
     return (
         <footer className="activities-footer">
             <div className="activities-container activities-footer-grid">
+
                 <div className="activities-footer-about">
-                    <a href="/">
+                    <a href={page()}>
                         <img
                             src={`${A}vijay-odisha-logo.jpg`}
                             alt="Vijaya Odisha"
@@ -143,26 +146,27 @@ function ActivitiesFooter() {
 
                 <div>
                     <h3>Discover</h3>
-                    <a href="/about-us.html">About Us</a>
-                    <a href="/objectives.html">Objectives</a>
-                    <a href="/activities.html">Activities</a>
-                    <a href="/strength.html">Strength</a>
+                    <a href={page("about-us.html")}>About Us</a>
+                    <a href={page("objectives.html")}>Objectives</a>
+                    <a href={page("activities.html")}>Activities</a>
+                    <a href={page("strength.html")}>Strength</a>
                 </div>
 
                 <div>
                     <h3>Explore</h3>
-                    <a href="/projects.html">Projects</a>
-                    <a href="/photo-gallery.html">Gallery</a>
-                    <a href="/news.html">News</a>
-                    <a href="/donate.html">Donate</a>
+                    <a href={page("projects.html")}>Projects</a>
+                    <a href={page("photo-gallery.html")}>Gallery</a>
+                    <a href={page("news.html")}>News</a>
+                    <a href={page("donate.html")}>Donate</a>
                 </div>
 
                 <div>
                     <h3>Contact</h3>
                     <p>Bhubaneswar, Odisha</p>
                     <p>Serving communities since 1996</p>
-                    <a href="/contact.html">Get in touch ↗</a>
+                    <a href={page("contact.html")}>Get in touch ↗</a>
                 </div>
+
             </div>
 
             <div className="activities-footer-bottom">
@@ -208,10 +212,9 @@ export default function Activities() {
             element.classList.add("act-reveal");
 
             if (element.classList.contains("act-card")) {
-                element.style.transitionDelay = `${(Array.from(element.parentElement.children).indexOf(element) %
-                    3) *
-                    100
-                    }ms`;
+                element.style.transitionDelay = `${(
+                    Array.from(element.parentElement.children).indexOf(element) % 3
+                ) * 100}ms`;
             }
 
             observer.observe(element);
@@ -245,16 +248,18 @@ export default function Activities() {
             <SiteHeader activePage="Activities" />
 
             <main>
+
                 {/* HERO SECTION */}
                 <section className="act-hero">
                     <div className="activities-container act-hero-layout">
+
                         <div className="act-hero-copy">
                             <span className="act-kicker">
                                 OUR WORK <i /> OUR COMMITMENT
                             </span>
 
                             <div className="act-breadcrumb">
-                                <a href="/">Home</a>
+                                <a href={page()}>Home</a>
                                 <span>/</span>
                                 <span>Activities</span>
                             </div>
@@ -280,7 +285,7 @@ export default function Activities() {
                                 </a>
 
                                 <a
-                                    href="/contact.html"
+                                    href={page("contact.html")}
                                     className="act-secondary-link"
                                 >
                                     Connect with us
@@ -309,12 +314,14 @@ export default function Activities() {
 
                             <span className="act-visual-index">01 — 12</span>
                         </div>
+
                     </div>
                 </section>
 
                 {/* INTRODUCTION */}
                 <section className="act-intro">
                     <div className="activities-container act-intro-layout">
+
                         <div className="act-intro-label">
                             <span className="act-kicker">WHAT WE DO</span>
                             <span className="act-vertical-line" />
@@ -338,6 +345,7 @@ export default function Activities() {
                                 needs.
                             </p>
                         </div>
+
                     </div>
                 </section>
 
@@ -347,6 +355,7 @@ export default function Activities() {
                     id="activity-explorer"
                 >
                     <div className="activities-container">
+
                         <div className="act-explorer-heading">
                             <div>
                                 <span className="act-kicker">
@@ -365,6 +374,7 @@ export default function Activities() {
                         </div>
 
                         <div className="act-toolbar">
+
                             <div
                                 className="act-filters"
                                 aria-label="Filter activities"
@@ -400,6 +410,7 @@ export default function Activities() {
                                     placeholder="Find an activity..."
                                 />
                             </label>
+
                         </div>
 
                         <div className="act-result-line">
@@ -421,10 +432,10 @@ export default function Activities() {
                                     <article
                                         key={activity.number}
                                         className={`act-card ${index === 0 &&
-                                            activeCategory === "All" &&
-                                            !search
-                                            ? "act-card-featured"
-                                            : ""
+                                                activeCategory === "All" &&
+                                                !search
+                                                ? "act-card-featured"
+                                                : ""
                                             } ${expanded ? "is-expanded" : ""}`}
                                     >
                                         <div className="act-card-top">
@@ -469,6 +480,7 @@ export default function Activities() {
                                                 {expanded ? "−" : "↗"}
                                             </span>
                                         </button>
+
                                     </article>
                                 );
                             })}
@@ -493,11 +505,13 @@ export default function Activities() {
                                 </button>
                             </div>
                         )}
+
                     </div>
                 </section>
 
                 {/* FEATURE SECTION */}
                 <section className="act-feature">
+
                     <div className="act-feature-image">
                         <img
                             src={`${A}IMG_20241203_121532.jpg`}
@@ -521,15 +535,17 @@ export default function Activities() {
                             create meaningful and sustainable change.
                         </p>
 
-                        <a href="/objectives.html">
+                        <a href={page("objectives.html")}>
                             Discover our objectives <span>↗</span>
                         </a>
                     </div>
+
                 </section>
 
                 {/* CLOSING SECTION */}
                 <section className="act-closing">
                     <div className="activities-container act-closing-inner">
+
                         <div>
                             <span className="act-kicker">
                                 BE PART OF THE CHANGE
@@ -550,20 +566,23 @@ export default function Activities() {
                             </p>
 
                             <div>
-                                <a href="/contact.html">
+                                <a href={page("contact.html")}>
                                     Start a conversation ↗
                                 </a>
 
-                                <a href="/donate.html">
+                                <a href={page("donate.html")}>
                                     Support our work
                                 </a>
                             </div>
                         </div>
+
                     </div>
                 </section>
+
             </main>
 
             <ActivitiesFooter />
+
         </div>
     );
 }
